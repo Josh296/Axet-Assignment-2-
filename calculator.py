@@ -111,7 +111,7 @@ def remaining_tenure(balance: float, annual_rate: float, instalment: float) -> i
 
     This is the inverse of the EMI formula (solves for n).
     """
-    r = annual_rate / 100
+    r = _monthly_rate(annual_rate)
     if balance <= 0:
         return 0
     if r == 0:
