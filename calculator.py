@@ -142,6 +142,8 @@ def prepayment_savings(
     """
     instalment = emi(principal, annual_rate, tenure_months)
     sched = amortisation_schedule(principal, annual_rate, tenure_months)
+    if prepay_month < 1 or prepay_month > tenure_months:
+        raise ValueError("prepay_month must be between 1 and tenure_months")
     balance = sched[prepay_month - 1]["balance"]
     new_balance = balance - prepay_amount
     if new_balance <= 0:
